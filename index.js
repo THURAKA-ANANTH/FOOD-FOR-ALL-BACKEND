@@ -17,6 +17,9 @@ app.use(express.json({ limit: "30mb", extended: true }));
 const organizationRoutes = require("./routes/organization/organization.js");
 app.use("/organization", organizationRoutes);
 
+const donatorRoutes = require("./routes/donator/donator.routes.js");
+app.use("/donator", donatorRoutes);
+
 const URL = process.env.MONGODB_URL;
 
 mongoose.connect(URL, {
