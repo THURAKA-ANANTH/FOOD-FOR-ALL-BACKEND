@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
 const saltRounds = 10; // For hashing passwords
+const { imageUpload } = require("../../common/imageUpload");
 
-const Organization = require("../../models/organization");
+const Organization = require("../../models/organization.model");
 
 // Register new organization
 const createOrganization = async (req, res) => {
@@ -17,6 +18,9 @@ const createOrganization = async (req, res) => {
             } else {
                 const hashedPassword = bcrypt.hashSync(formData.password, saltRounds); // hash the password
                 formData.password = hashedPassword; // set the hashed password to the formData object
+
+                // upload the registration certificate
+                formData.registrationCertificate = await imageUpload(formData.registrationCertificate); 
 
                 const newOrganization = new Organization(formData); // create a new organization
                 newOrganization.save() // save the new organization to the database
