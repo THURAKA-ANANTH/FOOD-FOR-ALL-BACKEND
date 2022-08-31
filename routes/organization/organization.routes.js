@@ -2,8 +2,7 @@ const express = require("express");
 
 const {
   createOrganization,
-} = require("../../controllers/organization/organization");
-const { validate } = require("../../middleware/donationValidation");
+} = require("../../controllers/organization/createOrganization");
 
 const router = express.Router();
 
