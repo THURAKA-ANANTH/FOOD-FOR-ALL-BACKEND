@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 8070;
 app.use(cors());
 app.use(express.json({ limit: "30mb", extended: true }));
 
+//Login routes
+const loginRouter = require("./routes/login");
+app.use("/main", loginRouter);
+
 // Organization
 const organizationRoutes = require("./routes/organization/organization.js");
 app.use("/organization", organizationRoutes);
@@ -36,3 +40,4 @@ connection.once("open", () => {
 app.listen(PORT, () => {
   console.log(`Server is up and running on port ${PORT}`);
 });
+

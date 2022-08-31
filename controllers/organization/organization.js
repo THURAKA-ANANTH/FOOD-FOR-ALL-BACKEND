@@ -40,6 +40,23 @@ const createOrganization = async (req, res) => {
         })
 }
 
+const viewAllOrganizations=async(req,res)=>{
+    Organization
+    .find()
+    .then((organizations) => {
+      res.json(organizations);
+    })
+    .catch((err) => {
+      console.log(err.message);
+      res.status(500).send({
+        status: "Error with listing organizations",
+      });
+    });
+
+
+}
+
 module.exports = {
-    createOrganization
+    createOrganization,
+    viewAllOrganizations
 }
