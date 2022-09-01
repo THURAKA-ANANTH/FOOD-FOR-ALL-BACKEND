@@ -9,7 +9,7 @@ const donationSchema = new Schema({
   status: {
     type: String,
     required: true,
-    default: "active",
+    default: "pending",
   },
   donationTitle: {
     type: String,
@@ -35,11 +35,6 @@ const donationSchema = new Schema({
     type: Number,
     required: true,
     default: 1,
-  },
-  adminStatus: {
-    type: String,
-    required: true,
-    default: "pending",
   },
 });
 
