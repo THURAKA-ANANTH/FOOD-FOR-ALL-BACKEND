@@ -4,11 +4,12 @@ const deleteDonation = async (req, res) => {
   try {
     const donationID = req.params.id;
 
-    await Donation.find(donationID).then((donation) => {
-      const emailArray = donation.numberOfRequests;
-      for (let index = 0; index < array.length; index++) {
-        const element = array[index];
-      }
+    await Donation.find({ _id: donationID }).then((donation) => {
+      // const emailArray = donation.numberOfRequests;
+      // for (let index = 0; index < array.length; index++) {
+      //   const element = array[index];
+      // }
+      console.log(donation);
     });
 
     await Donation.findByIdAndDelete(donationID)
