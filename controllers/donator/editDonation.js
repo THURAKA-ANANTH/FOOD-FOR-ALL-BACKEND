@@ -4,12 +4,12 @@ const Donation = require("../../models/donation.model");
 
 const editDonation = async (req, res) => {
   try {
-    const errors = validationResult(req);
-    console.log(errors);
-    if (!errors.isEmpty()) {
-      res.status(422).json({ errors: errors.array() });
-      return;
-    }
+    // const errors = validationResult(req);
+    // console.log(errors);
+    // if (!errors.isEmpty()) {
+    //   res.status(422).json({ errors: errors.array() });
+    //   return;
+    // }
     const donationID = req.params.id;
 
     const { donationTitle, email, contactNumber, donationDescription } =
@@ -23,7 +23,8 @@ const editDonation = async (req, res) => {
     };
 
     await Donation.findByIdAndUpdate(donationID, updateDonation)
-      .then(() => {
+      .then((donation) => {
+        console.log(donation);
         res.status(200).send({ status: "donation updated" });
       })
       .catch(() => {
