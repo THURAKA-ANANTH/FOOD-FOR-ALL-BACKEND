@@ -18,7 +18,7 @@ const createDonation = async (req, res) => {
     //   "akilakavinda909@gmail.com",
     // ];
     const donationData = req.body;
-    const imageBase64 = donationData.image;
+    const imageBase64 = donationData.donationImage;
     const donationImage = await imageUpload(imageBase64);
     // var imageUploaded = await imageUpload(imageBase64);
     // console.log(imageUploaded);
@@ -39,7 +39,8 @@ const createDonation = async (req, res) => {
         // for (let index = 0; index < emailArray.length; index++) {
         //   sendEmail(emailArray[index], "loopTEst");
         // }
-        sendEmail(email, "Hello");
+        // sendEmail(email, "Hello");
+        console.log(donation);
         res.status(201).json({
           message: "Donation created successfully",
           donation: donation,
