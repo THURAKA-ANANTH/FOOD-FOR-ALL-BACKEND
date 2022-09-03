@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const Organization=require('../models/organization')
+const Organization=require('../models/organization.model')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 

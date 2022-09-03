@@ -10,7 +10,7 @@ const createOrganization = async (req, res) => {
     // console.log(formData);
 
     Organization.findOne({ email: formData.email })
-        .then(organization => {
+        .then(async (organization) => {
             if (organization) {
                 res.status(400).json({
                     message: "Organization already exists"
@@ -20,7 +20,7 @@ const createOrganization = async (req, res) => {
                 formData.password = hashedPassword; // set the hashed password to the formData object
 
                 // upload the registration certificate
-                formData.registrationCertificate = await imageUpload(formData.registrationCertificate); 
+                formData.registrationCertificate = await imageUpload(formData.registrationCertificate);
 
                 const newOrganization = new Organization(formData); // create a new organization
                 newOrganization.save() // save the new organization to the database
@@ -44,18 +44,18 @@ const createOrganization = async (req, res) => {
         })
 }
 
-const viewAllOrganizations=async(req,res)=>{
+const viewAllOrganizations = async (req, res) => {
     Organization
-    .find()
-    .then((organizations) => {
-      res.json(organizations);
-    })
-    .catch((err) => {
-      console.log(err.message);
-      res.status(500).send({
-        status: "Error with listing organizations",
-      });
-    });
+        .find()
+        .then((organizations) => {
+            res.json(organizations);
+        })
+        .catch((err) => {
+            console.log(err.message);
+            res.status(500).send({
+                status: "Error with listing organizations",
+            });
+        });
 
 
 }
