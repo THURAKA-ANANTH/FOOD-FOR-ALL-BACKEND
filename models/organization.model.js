@@ -30,6 +30,10 @@ const OrganizationSchema = new Schema({
         type: String,
         required: true
     },
+    registrationDate: {
+        type: Date,
+        required: true
+    },
     presidentName: {
         type: String,
         required: true
@@ -62,9 +66,15 @@ const OrganizationSchema = new Schema({
         type: String,
         required: true
     },
+    status: {
+        type: String,
+        required: true,
+        default: "pending"
+    },
     roles: {
         type: String,
-        required: true
+        required: true,
+        default: "5150"
     }
 })
 

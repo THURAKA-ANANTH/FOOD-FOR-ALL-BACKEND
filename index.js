@@ -18,7 +18,7 @@ const loginRouter = require("./routes/login");
 app.use("/main", loginRouter);
 
 // Organization
-const organizationRoutes = require("./routes/organization/organization.js");
+const organizationRoutes = require("./routes/organization.routes");
 app.use("/organization", organizationRoutes);
 
 const donatorRoutes = require("./routes/donator/donator.routes.js");
