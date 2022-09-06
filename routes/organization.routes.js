@@ -9,6 +9,6 @@ const { getAllOrganizations } = require("../controllers/organization/allOrganiza
 const router = express.Router();
 
 router.post("/register", createOrganization);
-router.get("/view", verifyJWT, getAllOrganizations)
+router.get("/view", getAllOrganizations)
 
 module.exports = router;
