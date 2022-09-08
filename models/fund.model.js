@@ -17,6 +17,7 @@ const fundSchema = new Schema({
     endingDate: {
         type: Date,
         required: true,
+        default: Date.now
     },
     budget: {
         type: Number,
