@@ -44,6 +44,7 @@ const createOrganization = async (req, res) => {
         })
 }
 
+// View all organizations 
 const viewAllOrganizations = async (req, res) => {
     Organization
         .find()
@@ -56,8 +57,6 @@ const viewAllOrganizations = async (req, res) => {
                 status: "Error with listing organizations",
             });
         });
-
-
 }
 
 module.exports = {
