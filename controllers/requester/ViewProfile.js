@@ -19,4 +19,4 @@ const viewUserProfile = async (req, res) => {
     }
   };
   
-  module.exports = viewUserProfile;
+  module.exports = { viewUserProfile };

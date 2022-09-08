@@ -15,8 +15,8 @@ const requesterSignUp = async (req, res) => {
         userData.password = hashedPassword; // set the hashed password to the userData object
 
         //create new account
-        const newRequester = new SignUp(userData); // create a new organization
-        newRequester.save() // save the new organization to the database
+        const newRequester = new SignUp(userData); 
+        newRequester.save() 
                     .then(SignUp => {
                         res.status(201).json({
                             message: "User account created successfully",
@@ -29,7 +29,7 @@ const requesterSignUp = async (req, res) => {
                         })
                     }).catch(err => {
                         res.status(500).json({
-                            message: "Error creating organization",
+                            message: "Error creating user account",
                             error: err
                         })
                     })
