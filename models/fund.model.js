@@ -7,7 +7,7 @@ const fundSchema = new Schema({
         required: true,
     },
     target: {
-        type: Number,
+        type: String,
         required: true,
     },
     description: {
