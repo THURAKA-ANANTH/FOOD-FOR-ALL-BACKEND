@@ -2,11 +2,12 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10; // For hashing passwords
 const SignUp = require("../../models/requester.model");
 
-const requesterSignUp = async (req, res) => {
+const requesterSignUp = (req, res) => {
    const userData = req.body; // get user data
+   console.log(userData);
 
-   SignUp.findOne({ email: userData.email}).then(async (SignUp) => {
-    if (SignUp) {
+   SignUp.findOne({ email: userData.email}).then(async (signup) => {
+    if (signup) {
         res.status(400).json({
             message : "The user already exists"
         })
@@ -15,8 +16,8 @@ const requesterSignUp = async (req, res) => {
         userData.password = hashedPassword; // set the hashed password to the userData object
 
         //create new account
-        const newRequester = new SignUp(userData); // create a new organization
-        newRequester.save() // save the new organization to the database
+        const newRequester = new SignUp(userData); 
+        newRequester.save() 
                     .then(SignUp => {
                         res.status(201).json({
                             message: "User account created successfully",
@@ -29,7 +30,7 @@ const requesterSignUp = async (req, res) => {
                         })
                     }).catch(err => {
                         res.status(500).json({
-                            message: "Error creating organization",
+                            message: "Error creating user account",
                             error: err
                         })
                     })
@@ -37,4 +38,4 @@ const requesterSignUp = async (req, res) => {
    })
 }
 
-module.exports = {requesterSignUp}
+module.exports = {requesterSignUp};
