@@ -49,5 +49,5 @@ const RequestFundSchema = new Schema({
 
 })
 
-const RequestFund = moongoose.model("requestFund", RequestFundSchema)
+const RequestFund = mongoose.model("requestFund", RequestFundSchema)
 module.exports = RequestFund;

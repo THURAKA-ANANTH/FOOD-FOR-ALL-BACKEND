@@ -1,7 +1,7 @@
 const Request = require("../../models/requestFund.model");
 const { imageUpload } = require("../../common/imageUpload");
 
-const createRequest = async (res, res) => {
+const createRequest = async (req, res) => {
     const formData = req.body;
 
     formData.document = await imageUpload(formData.document);

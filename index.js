@@ -28,6 +28,10 @@ app.use("/fund", fundRoutes);
 const donatorRoutes = require("./routes/donator/donator.routes.js");
 app.use("/donator", donatorRoutes);
 
+//requester
+const requesterRoutes = require("./routes/requester.routes");
+app.use("/requester", requesterRoutes);
+
 const URL = process.env.MONGODB_URL;
 
 mongoose.connect(URL, {

@@ -2,11 +2,12 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10; // For hashing passwords
 const SignUp = require("../../models/requester.model");
 
-const requesterSignUp = async (req, res) => {
+const requesterSignUp = (req, res) => {
    const userData = req.body; // get user data
+   console.log(userData);
 
-   SignUp.findOne({ email: userData.email}).then(async (SignUp) => {
-    if (SignUp) {
+   SignUp.findOne({ email: userData.email}).then(async (signup) => {
+    if (signup) {
         res.status(400).json({
             message : "The user already exists"
         })
@@ -37,4 +38,4 @@ const requesterSignUp = async (req, res) => {
    })
 }
 
-module.exports = {requesterSignUp}
+module.exports = {requesterSignUp};
