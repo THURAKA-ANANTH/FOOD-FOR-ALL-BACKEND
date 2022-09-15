@@ -18,3 +18,7 @@ const getOrganizationFunds = async (req, res) => {
         console.log(error);
     }
 }
+
+module.exports = {
+    getOrganizationFunds,
+};
