@@ -7,7 +7,7 @@ const fundSchema = new Schema({
         required: true,
     },
     target: {
-        type: Number,
+        type: String,
         required: true,
     },
     description: {
@@ -17,6 +17,7 @@ const fundSchema = new Schema({
     endingDate: {
         type: Date,
         required: true,
+        default: Date.now
     },
     budget: {
         type: Number,

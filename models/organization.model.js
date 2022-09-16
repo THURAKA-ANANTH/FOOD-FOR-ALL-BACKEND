@@ -32,7 +32,8 @@ const OrganizationSchema = new Schema({
     },
     registrationDate: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     },
     presidentName: {
         type: String,
