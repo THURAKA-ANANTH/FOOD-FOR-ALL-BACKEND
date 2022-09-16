@@ -38,6 +38,11 @@ const fundSchema = new Schema({
         type: String,
         required: true,
     },
+
+    status: {
+        type: String,
+        required: true,
+    },
 })
 
 const Fund = mongoose.model("Fund", fundSchema);
