@@ -6,7 +6,9 @@ const getOrganizationFunds = async (req, res) => {
 
         await Fund.find({ organizationID: organizationID })
             .then((funds) => {
-                res.json(funds);
+                res.status(200).send({
+                    funds
+                });
             }).catch((err) => {
                 res.status(500).send({
                     msg: "Error fetching data",
@@ -19,6 +21,32 @@ const getOrganizationFunds = async (req, res) => {
     }
 }
 
+// Get fund by organization and status
+const getFundByOrganizationAndStatus = (req, res) => {
+    try {
+        // console.log(req.params);
+        Fund.find({
+            organizationID: req.params.organizationID,
+            status: req.params.status
+        })
+            .then((funds) => {
+                // console.log(funds);
+                res.status(200).send({
+                    funds
+                });
+            })
+            .catch((err) => {
+                res.status(500).send({
+                    msg: "Error fetching data",
+                    error: err,
+                });
+            });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     getOrganizationFunds,
+    getFundByOrganizationAndStatus
 };
