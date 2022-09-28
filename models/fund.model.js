@@ -14,6 +14,10 @@ const fundSchema = new Schema({
         type: String,
         required: true,
     },
+    createdOn: {
+        type: Date,
+        default: Date.now,
+    },
     endingDate: {
         type: Date,
         required: true,
@@ -39,6 +43,23 @@ const fundSchema = new Schema({
         type: String,
         required: true,
     },
+    status: {
+        type: String,
+        required: true,
+        default: "pending"
+    },
+    donations: {
+        type: Array,
+        default: []
+    },
+    currentAmount: {
+        type: Number,
+        default: 0
+    },
+    completedOn: {
+        type: Date,
+        default: null
+    }
 })
 
 const Fund = mongoose.model("Fund", fundSchema);
