@@ -1,7 +1,7 @@
 const express = require("express");
-const verifyJWT = require("../middleware/verifyJWT")
+// const verifyJWT = require("../middleware/verifyJWT")
 
-const { validate } = require("../middleware/donationValidation");
+// const { validate } = require("../middleware/donationValidation");
 
 const { createOrganization } = require("../controllers/organization/createOrganization");
 const { getAllOrganizations } = require("../controllers/organization/allOrganizations");
@@ -11,10 +11,10 @@ const { deleteOrganization } = require("../controllers/organization/deleteOrgani
 
 const router = express.Router();
 
-router.get("/", verifyJWT, getAllOrganizations)
-router.get("/:id", verifyJWT, getOrganization)
+router.get("/", getAllOrganizations)
+router.get("/:id", getOrganization)
 router.post("/register", createOrganization);
 router.put("/update/:id", updateOrganization)
-router.delete("/delete/:id", verifyJWT, deleteOrganization)
+router.delete("/delete/:id", deleteOrganization)
 
 module.exports = router;

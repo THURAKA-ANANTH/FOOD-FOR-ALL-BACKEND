@@ -7,12 +7,15 @@ const updateFund = async (req, res) => {
     try {
         const formData = req.body;
         const fundId = req.params.id;
-        const imageBase64 = formData.fundImage;
         const imageIsUpdated = formData.imageIsUpdated;
+
+        // set fund status to pending
+        formData.status = "pending";
+
+        // if image is updated, upload image to cloudinary
         if (imageIsUpdated) {
+            const imageBase64 = formData.fundImage;
             formData.fundImage = await imageUpload(imageBase64);
-        } else {
-            formData.fundImage = await Fund.findById(fundId).select('fundImage');
         }
 
         await Fund.findByIdAndUpdate(fundId, formData)

@@ -2,9 +2,10 @@ const Organization = require("../../models/organization.model");
 
 const getOrganization = (req, res) => {
     try {
+        // console.log(req.params.id);
         Organization.findById(req.params.id)
-            .then((organization) => {
-                res.status(500).send({
+        .then((organization) => {
+                res.status(200).send({
                     organization
                 });
             })
