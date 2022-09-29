@@ -4,12 +4,13 @@ const { getAllFunds } = require("../controllers/fund/allFunds");
 const { createFund } = require("../controllers/fund/createFund");
 const { deleteFund } = require("../controllers/fund/deleteFund");
 const { getFund, getFundByStatus } = require("../controllers/fund/getFund");
-const { getOrganizationFunds, getFundByOrganizationAndStatus } = require("../controllers/fund/getOrganizationFunds");
+const { getOrganizationFunds, getFundByOrganizationAndStatus, getNFunds } = require("../controllers/fund/getOrganizationFunds");
 const { updateFund } = require("../controllers/fund/updateFund");
 
 const router = express.Router();
 
 router.get("/", getAllFunds);
+router.get("/:organizationId/limit/:limit", getNFunds);
 router.get("/:id", getFund);
 router.post("/create", createFund);
 router.put("/update/:id", updateFund);

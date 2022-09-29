@@ -40,7 +40,7 @@ const OrganizationSchema = new Schema({
         required: true
     },
     presidentContactNumber: {
-        type: Number,
+        type: String,
         required: true
     },
     presidentEmail: {
@@ -52,7 +52,7 @@ const OrganizationSchema = new Schema({
         required: true
     },
     secretaryContactNumber: {
-        type: Number,
+        type: String,
         required: true
     },
     secretaryEmail: {
