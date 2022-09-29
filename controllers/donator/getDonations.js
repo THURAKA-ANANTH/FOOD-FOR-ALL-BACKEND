@@ -1,7 +1,7 @@
 const Donation = require("../../models/donation.model");
 
 const getCompletedDonations = async (req, res) => {
-  await Donation.find({ status: "completed" })
+  await Donation.find({ status: "completed", userID: req.params.id })
     .then((donations) => {
       res.json(donations);
     })
@@ -13,7 +13,7 @@ const getCompletedDonations = async (req, res) => {
 };
 
 const getOngoingDonations = async (req, res) => {
-  await Donation.find({ status: "active" })
+  await Donation.find({ status: "active", userID: req.params.id })
     .then((donations) => {
       res.json(donations);
     })
@@ -25,7 +25,7 @@ const getOngoingDonations = async (req, res) => {
 };
 
 const getPendingDonations = async (req, res) => {
-  await Donation.find({ status: "pending" })
+  await Donation.find({ status: "pending", userID: req.params.id })
     .then((donations) => {
       res.json(donations);
     })
@@ -37,7 +37,7 @@ const getPendingDonations = async (req, res) => {
 };
 
 const getRejectedDonations = async (req, res) => {
-  await Donation.find({ status: "rejected" })
+  await Donation.find({ status: "rejected", userID: req.params.id })
     .then((donations) => {
       res.json(donations);
     })
