@@ -46,7 +46,33 @@ const getFundByOrganizationAndStatus = (req, res) => {
     }
 }
 
+// Get latest n funds
+const getNFunds = (req, res) => {
+    const { limit } = req.params;
+
+    try {
+        Fund.find({
+            status: { $in: ["approved", "completed"] },
+            organizationID: req.params.organizationId
+        }).sort({ _id: 1 }).limit(limit)
+            .then((funds) => {
+                res.status(200).send({
+                    funds
+                });
+            })
+            .catch((err) => {
+                res.status(500).send({
+                    msg: "Error fetching data",
+                    error: err,
+                });
+            });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     getOrganizationFunds,
-    getFundByOrganizationAndStatus
+    getFundByOrganizationAndStatus,
+    getNFunds
 };

@@ -36,6 +36,17 @@ const donationSchema = new Schema({
     required: true,
     default: 1,
   },
+  location: {
+    type: String,
+    required: true,
+  },
+  donationStartDate: {
+    type: Date,
+    default: Date.now,
+  },
+  donationEndDate: {
+    type: Date,
+  },
 });
 
 const Donation = mongoose.model("Donation", donationSchema);
