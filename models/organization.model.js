@@ -19,7 +19,7 @@ const OrganizationSchema = new Schema({
         required: true
     },
     contactNumber: {
-        type: Number,
+        type: String,
         required: true
     },
     email: {
