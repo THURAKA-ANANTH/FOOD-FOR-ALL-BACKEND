@@ -17,15 +17,6 @@ const updateOrganization = async (req, res) => {
                 })
             } else {
                 try {
-                    // if company registration image can update, uncomment the following line
-                    // const imageBase64 = formData.registrationCertificate;
-                    // const imageIsUpdated = formData.imageIsUpdated;
-                    // if (imageIsUpdated) {
-                    //     formData.registrationCertificate = await imageUpload(imageBase64);
-                    // } else {
-                    //     formData.registrationCertificate = await Organization.findById(organizationId).select('registrationCertificate');
-                    // }
-
                     await Organization.findByIdAndUpdate(organizationId, formData)
                         .then(organization => {
                             res.status(201).json({
@@ -50,6 +41,35 @@ const updateOrganization = async (req, res) => {
         })
 }
 
+// Update board member details
+const updateOrganizationBoard = async (req, res) => {
+    const formData = req.body;
+    const organizationId = req.params.id;
+
+    try {
+        await Organization.findByIdAndUpdate(organizationId, formData)
+            .then(organization => {
+                res.status(201).json({
+                    message: "Organization updated successfully",
+                    organization: organization
+                })
+            }
+            ).catch(err => {
+                console.log(err.message);
+                res.status(500).json({
+                    message: "Error updating organization",
+                    error: err
+                })
+            }
+            )
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+// Change password
 const changePassword = async (req, res) => {
     const formData = req.body;
     const organizationId = req.params.id;
@@ -77,5 +97,6 @@ const changePassword = async (req, res) => {
 
 module.exports = {
     updateOrganization,
-    changePassword
+    changePassword,
+    updateOrganizationBoard
 }

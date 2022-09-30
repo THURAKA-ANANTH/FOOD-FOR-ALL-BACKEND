@@ -5,7 +5,7 @@ const express = require("express");
 
 const { createOrganization } = require("../controllers/organization/createOrganization");
 const { getAllOrganizations } = require("../controllers/organization/allOrganizations");
-const { updateOrganization, changePassword } = require("../controllers/organization/updateOrganization");
+const { updateOrganization, changePassword, updateOrganizationBoard } = require("../controllers/organization/updateOrganization");
 const { getOrganization } = require("../controllers/organization/getOrganization");
 const { deleteOrganization } = require("../controllers/organization/deleteOrganization");
 
@@ -16,6 +16,7 @@ router.get("/:id", getOrganization)
 router.post("/register", createOrganization);
 router.get("/view", getAllOrganizations)
 router.put("/update/:id", updateOrganization)
+router.put("/update/board/:id", updateOrganizationBoard)
 router.put("/update/changePassword/:id", changePassword)
 router.delete("/delete/:id", deleteOrganization)
 
