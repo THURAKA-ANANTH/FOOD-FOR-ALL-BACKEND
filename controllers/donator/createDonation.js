@@ -5,6 +5,7 @@ const Donation = require("../../models/donation.model");
 
 const createDonation = async (req, res) => {
   try {
+    var donationImage;
     const errors = validationResult(req);
     console.log(errors);
     if (!errors.isEmpty()) {
@@ -18,8 +19,12 @@ const createDonation = async (req, res) => {
     //   "akilakavinda909@gmail.com",
     // ];
     const donationData = req.body;
-    const imageBase64 = donationData.donationImage;
-    const donationImage = await imageUpload(imageBase64);
+    if (donationData.donationImage != null) {
+      const imageBase64 = donationData.donationImage;
+      donationImage = await imageUpload(imageBase64);
+    }
+    // const imageBase64 = donationData.donationImage;
+    // const donationImage = await imageUpload(imageBase64);
 
     // var imageUploaded = await imageUpload(imageBase64);
     // console.log(imageUploaded);
@@ -39,7 +44,7 @@ const createDonation = async (req, res) => {
       location,
       donationEndDate,
       contactNumber,
-      donationImage,
+      donationImage: donationImage,
       donationDescription,
     });
 
