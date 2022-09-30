@@ -22,6 +22,12 @@ const RequesterSchema = new Schema({
         type: String,
         required: true
     },
+    
+    roles: {
+        type: String,
+        required: true,
+        default: "1984"
+    }
 })
 
 const Requester = mongoose.model("requester", RequesterSchema)

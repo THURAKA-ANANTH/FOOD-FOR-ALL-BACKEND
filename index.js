@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 8070;
 app.use(cors());
 app.use(express.json({ limit: "30mb", extended: true }));
 
+//admin routes
+const adminRouter=require("./routes/admin/admin.routes");
+app.use("/admin",adminRouter);
+
 //Login routes
 const loginRouter = require("./routes/login");
 app.use("/main", loginRouter);
