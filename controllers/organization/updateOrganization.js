@@ -1,4 +1,6 @@
-const { imageUpload } = require("../../common/imageUpload");
+const bcrypt = require('bcrypt');
+const saltRounds = 10; // For hashing passwords
+
 const { sendEmail } = require("../../common/sendEmail");
 
 const Organization = require("../../models/organization.model");
@@ -48,6 +50,32 @@ const updateOrganization = async (req, res) => {
         })
 }
 
+const changePassword = async (req, res) => {
+    const formData = req.body;
+    const organizationId = req.params.id;
+
+    // console.log(formData, organizationId);
+
+    const hashedPassword = bcrypt.hashSync(formData.password, saltRounds); // hash the password
+    formData.password = hashedPassword; // set the hashed password to the formData object
+
+    await Organization.findByIdAndUpdate(organizationId, formData)
+        .then(organization => {
+            res.status(201).json({
+                message: "Password changed successfully",
+                organization: organization
+            })
+        }).catch(err => {
+            console.log(err.message);
+            res.status(500).json({
+                message: "Error changing password",
+                error: err
+            })
+        })
+}
+
+
 module.exports = {
-    updateOrganization
+    updateOrganization,
+    changePassword
 }
