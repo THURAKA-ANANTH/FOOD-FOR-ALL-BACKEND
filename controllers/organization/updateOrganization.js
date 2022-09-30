@@ -11,7 +11,9 @@ const updateOrganization = async (req, res) => {
 
     Organization.findOne({ email: formData.email })
         .then(async (organization) => {
-            if (organization) {
+            // if organization is available with the email 
+            // and the id is not the same as the id of the organization being updated
+            if (organization && organization._id != organizationId) {
                 res.status(400).json({
                     message: "Organization already exists"
                 })
@@ -37,7 +39,6 @@ const updateOrganization = async (req, res) => {
                     console.log(error);
                 }
             }
-
         })
 }
 
