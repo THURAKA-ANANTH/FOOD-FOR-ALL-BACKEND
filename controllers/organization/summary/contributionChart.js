@@ -14,14 +14,14 @@ const contributionChart = async (req, res) => {
         }).then(async (contributions) => {
             const months = new Set();
             for (const contribution of contributions) {
-                months.add(contribution.donatedDate.getMonth());
+                months.add(contribution.donatedDate.getMonth()+1);
             }
             for (const month of months) {
                 result.labels.push(month);
                 result.data.push(0);
             }
             for (const contribution of contributions) {
-                const index = result.labels.indexOf(contribution.donatedDate.getMonth());
+                const index = result.labels.indexOf(contribution.donatedDate.getMonth()+1);
                 result.data[index] += contribution.amount;
             }
 

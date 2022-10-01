@@ -4,11 +4,12 @@ const FundDonation = require("../../models/fundDonation.model");
 const donateToFund = async (req, res) => {
   try {
     const fundID = req.params.id;
-    const { userID, amount } = req.body;
+    const { userID, amount, organizationID } = req.body;
     const newFund = new FundDonation({
       userID,
       fundID,
       amount,
+      organizationID
     });
 
     newFund
