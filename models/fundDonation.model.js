@@ -10,6 +10,9 @@ const fundDonationSchema = new Schema({
     type: String,
     required: true,
   },
+  organizationID: {
+    type: String,
+  },
   amount: {
     type: Number,
     required: true,

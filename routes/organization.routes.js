@@ -8,6 +8,7 @@ const { getAllOrganizations } = require("../controllers/organization/allOrganiza
 const { updateOrganization, changePassword, updateOrganizationBoard } = require("../controllers/organization/updateOrganization");
 const { getOrganization } = require("../controllers/organization/getOrganization");
 const { deleteOrganization } = require("../controllers/organization/deleteOrganization");
+const { getNContributions } = require("../controllers/organization/summary/latestContributions");
 
 const router = express.Router();
 
@@ -19,5 +20,6 @@ router.put("/update/:id", updateOrganization)
 router.put("/update/board/:id", updateOrganizationBoard)
 router.put("/update/changePassword/:id", changePassword)
 router.delete("/delete/:id", deleteOrganization)
+router.get("/:organizationID/latest/:limit", getNContributions)
 
 module.exports = router;
