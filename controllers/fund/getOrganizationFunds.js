@@ -54,7 +54,7 @@ const getNFunds = (req, res) => {
         Fund.find({
             status: { $in: ["approved", "completed"] },
             organizationID: req.params.organizationId
-        }).sort({ _id: 1 }).limit(limit)
+        }).sort({ _id: -1 }).limit(limit)
             .then((funds) => {
                 res.status(200).send({
                     funds

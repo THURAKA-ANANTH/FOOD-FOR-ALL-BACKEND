@@ -10,7 +10,7 @@ const createFund = async (req, res) => {
         const imageBase64 = formData.fundImage;
         formData.fundImage = await imageUpload(imageBase64);
         // formData.fundImage = 'fundImage' // for testing
-        formData.organizationID = 'organizationID' // for testing
+        // formData.organizationID = 'organizationID' // for testing
 
         const newFund = new Fund(formData);
         newFund.save()

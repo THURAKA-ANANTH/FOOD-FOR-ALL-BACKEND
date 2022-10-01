@@ -10,15 +10,16 @@ const donateToFund = async (req, res) => {
       fundID,
       amount,
     });
+
     newFund
       .save()
       .then(async () => {
         await Fund.findById(fundID)
           .then(async (fund) => {
             // var previousAmount = fund.currentAmount;
-            var newAmount = amount + fund.currentAmount;
+            var newAmount = parseInt(amount) + fund.currentAmount;
             const updateFund = {
-              amount: newAmount,
+              currentAmount: newAmount,
             };
             await Fund.findByIdAndUpdate(fundID, updateFund)
               .then(() => {
