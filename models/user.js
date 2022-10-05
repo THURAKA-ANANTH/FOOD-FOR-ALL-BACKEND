@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
 
+    name: {
+        type: String
+    },
     username: {
         type: String,
     },
@@ -11,8 +14,8 @@ const userSchema = new Schema({
         required: true
     },
 
-    roles:{
-        type:String,
+    roles: {
+        type: String,
     }
 
 })

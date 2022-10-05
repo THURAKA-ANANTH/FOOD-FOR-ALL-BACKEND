@@ -21,7 +21,8 @@ const sendDonationRequest = async (req, res) => {
     });
     await newRequest
       .save()
-      .then(async () => {
+      .then(async (request) => {
+        console.log(request);
         //get the donation to which request is associated
         await Donation.findOne({ _id: donationID })
           .then(async (donation) => {

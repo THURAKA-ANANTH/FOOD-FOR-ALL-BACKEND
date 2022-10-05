@@ -1,28 +1,49 @@
 const Donation = require("../../models/donation.model");
+const DonationRequest = require("../../models/donationRequest.model");
 
 const acceptDonationRequest = async (req, res) => {
-  const requestId = req.body.requestId;
-  const donationId = req.params.id;
-  const updateRequest = {
-    status: "accepted",
-  };
-  await Request.findByIdAndUpdate(requestId, updateRequest)
-    .then(() => {
-      Donation.findByIdAndUpdate()
-        .then(() => {
-          res.json({
-            message: "Donation Accepted",
-          });
-        })
-        .catch((err) => {
-          res.json({
-            message: err,
-          });
+  try {
+    const updateRequest = {
+      requestStatus: "accepted",
+    };
+    await DonationRequest.findByIdAndUpdate(req.params.id, updateRequest)
+      .then(() => {
+        res.status(201).json({
+          message: "Requetsted updated",
         });
-    })
-    .catch((err) => {
-      res.json({
-        message: err,
+      })
+      .catch((err) => {
+        res.status(201).json({
+          message: err,
+        });
       });
-    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const rejectDonationRequest = async (req, res) => {
+  try {
+    const updateRequest = {
+      requestStatus: "rejected",
+    };
+    await DonationRequest.findByIdAndUpdate(req.params.id, updateRequest)
+      .then(() => {
+        res.status(201).json({
+          message: "Requetsted updated",
+        });
+      })
+      .catch((err) => {
+        res.status(201).json({
+          message: err,
+        });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = {
+  acceptDonationRequest,
+  rejectDonationRequest,
 };
