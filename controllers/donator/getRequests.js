@@ -50,7 +50,28 @@ const getRejectedRequests = async (req, res) => {
   }
 };
 
+const getApprovedRequests = async (req, res) => {
+  console.log(req.params.id);
+  try {
+    await DonationRequest.find({
+      donationID: req.params.id,
+      requestStatus: "approved",
+    })
+      .then((requests) => {
+        res.json(requests);
+      })
+      .catch((err) => {
+        res.json({
+          error: err,
+        });
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   getPendingRequests,
   getRejectedRequests,
+  getApprovedRequests,
 };

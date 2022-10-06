@@ -19,6 +19,7 @@ const createDonation = async (req, res) => {
     //   "akilakavinda909@gmail.com",
     // ];
     const donationData = req.body;
+    console.log(donationData.donationImage);
     if (donationData.donationImage != null) {
       const imageBase64 = donationData.donationImage;
       donationImage = await imageUpload(imageBase64);
