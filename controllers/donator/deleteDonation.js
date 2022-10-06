@@ -1,14 +1,20 @@
 const Donation = require("../../models/donation.model");
+const DonationRequest = require("../../models/donationRequest.model");
 
 const deleteDonation = async (req, res) => {
   try {
+    var emailArray = [];
     const donationID = req.params.id;
-
-    await Donation.find({ _id: donationID }).then((donation) => {
+    console.log(donationID);
+    await DonationRequest.find({ donationID: donationID }).then((donation) => {
       // const emailArray = donation.numberOfRequests;
-      // for (let index = 0; index < array.length; index++) {
-      //   const element = array[index];
-      // }
+
+      for (let index = 0; index < donation.length; index++) {
+        console.log(index.requesterEmail);
+        var element = index.requesterEmail;
+        emailArray.push(element);
+      }
+      console.log(emailArray);
       console.log(donation);
     });
 
