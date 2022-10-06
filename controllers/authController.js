@@ -39,9 +39,9 @@ const handleLogin = async (req, res) => {
     // console.log(foundUser1)
     
     // evaluate password 
-    //  const match = await bcrypt.compare(password, foundUser.password);
+    const match = await bcrypt.compare(password, foundUser.password);
     
-    const match = (password==foundUser.password);
+    // const match = (password==foundUser.password);
     const match1=await bcrypt.compare(password,foundUser.password);
     //console.log(foundUser)
     console.log(password)
