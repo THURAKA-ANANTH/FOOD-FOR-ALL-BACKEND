@@ -25,7 +25,7 @@ const donateToFund = async (req, res) => {
             await Fund.findByIdAndUpdate(fundID, updateFund)
               .then(() => {
                 res.status(201).json({
-                  message: "Donatied successfully",
+                  message: "Donated successfully",
                 });
               })
               .catch((err) => {
