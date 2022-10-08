@@ -30,6 +30,7 @@ const donationSchema = new Schema({
   donationImage: {
     type: String,
     required: true,
+    default: "dsd",
   },
   numberOfRequests: {
     type: Number,
