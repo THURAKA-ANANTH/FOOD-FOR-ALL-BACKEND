@@ -12,7 +12,7 @@ const{editOrganization}=require("../../controllers/admin/updateOrg");
 
 const router = express.Router();
 
-router.get("/reqorglist", getRequestedOrganizations);
+router.get("/reqorglist",verifyJWT,getRequestedOrganizations);
 router.get("/approvedorg",getApprovedOrganizations);
 router.get("/vieworg/:id",getOneOrganizationDetails);
 router.get("/reqfunds",getRequestedFunds);
