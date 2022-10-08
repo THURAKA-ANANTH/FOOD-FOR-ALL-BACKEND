@@ -1,4 +1,5 @@
 const express = require("express");
+const { donateToFund } = require("../controllers/donator/donateFund");
 const { getAllFunds } = require("../controllers/fund/allFunds");
 
 const { createFund } = require("../controllers/fund/createFund");
@@ -12,12 +13,13 @@ const router = express.Router();
 router.get("/", getAllFunds);
 router.get("/:organizationId/limit/:limit", getNFunds);
 router.get("/:id", getFund);
+router.post("/donateFund/:id", donateToFund);
 router.post("/create", createFund);
 router.put("/update/:id", updateFund);
 router.delete("/delete/:id", deleteFund);
 router.put("/remove/:id", removeFund);
+router.get("/status/:status", getFundByStatus);
 router.get("/:oranizationID/:fundID", getOrganizationFunds);
 router.get("/:organizationID/status/:status", getFundByOrganizationAndStatus);
-router.get("/status/:status", getFundByStatus);
 
 module.exports = router;
