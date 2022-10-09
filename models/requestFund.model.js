@@ -2,15 +2,15 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 const RequestFundSchema = new Schema({
-    firstname: {
+    fname: {
         type: String,
         required: true
     },
-    lastName: {
+    lname: {
         type: String,
         required: true
     },
-    contactNumber: {
+    tpno: {
         type: Number,
         required: true
     },
@@ -18,7 +18,7 @@ const RequestFundSchema = new Schema({
         type: String,
         required: true
     },
-    zipCode: {
+    zipcode: {
         type: Number,
         required: true
     },
@@ -30,11 +30,11 @@ const RequestFundSchema = new Schema({
         type: String,
         required: true
     },
-    TelephoneNumber: {
+    contactno: {
         type: Number,
         required: true
     },
-    requestTitle: {
+    title: {
         type: String,
         required: true
     },
@@ -42,7 +42,7 @@ const RequestFundSchema = new Schema({
         type: String,
         required: true
     },
-    document: {
+    requestImage: {
         type: String,
         required: true
     },
