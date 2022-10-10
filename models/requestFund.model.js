@@ -30,6 +30,10 @@ const RequestFundSchema = new Schema({
         type: String,
         required: true
     },
+    userId: {
+        type: String,
+        required:true
+    },
     contactno: {
         type: Number,
         required: true
