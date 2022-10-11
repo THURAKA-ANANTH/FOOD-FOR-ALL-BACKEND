@@ -1,3 +1,4 @@
+const { sendAcceptedEmail } = require("../../common/sendEmail");
 const Donation = require("../../models/donation.model");
 const DonationRequest = require("../../models/donationRequest.model");
 
@@ -8,6 +9,8 @@ const acceptDonationRequest = async (req, res) => {
     };
     await DonationRequest.findByIdAndUpdate(req.params.id, updateRequest)
       .then(() => {
+        console.log(req.body);
+        sendAcceptedEmail(req.body.email, req.body.title);
         res.status(201).json({
           message: "Requetsted updated",
         });
@@ -28,7 +31,8 @@ const rejectDonationRequest = async (req, res) => {
       requestStatus: "rejected",
     };
     await DonationRequest.findByIdAndUpdate(req.params.id, updateRequest)
-      .then(() => {
+      .then((request) => {
+        console.log(request);
         res.status(201).json({
           message: "Requetsted updated",
         });

@@ -30,12 +30,12 @@ const donationSchema = new Schema({
   donationImage: {
     type: String,
     required: true,
-    default: "dsd",
+    default: "https://i.postimg.cc/4yT0N7m2/Donation.jpg",
   },
   numberOfRequests: {
     type: Number,
     required: true,
-    default: 1,
+    default: 0,
   },
   location: {
     type: String,

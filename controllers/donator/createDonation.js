@@ -55,7 +55,7 @@ const createDonation = async (req, res) => {
         // for (let index = 0; index < emailArray.length; index++) {
         //   sendEmail(emailArray[index], "loopTEst");
         // }
-        sendEmail(email, "Hello");
+        sendEmail(email, donationTitle);
         console.log(donation);
         res.status(201).json({
           message: "Donation created successfully",

@@ -55,7 +55,7 @@ const getApprovedRequests = async (req, res) => {
   try {
     await DonationRequest.find({
       donationID: req.params.id,
-      requestStatus: "approved",
+      requestStatus: "accepted",
     })
       .then((requests) => {
         res.json(requests);
