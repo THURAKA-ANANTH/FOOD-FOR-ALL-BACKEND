@@ -20,6 +20,7 @@ const editDonation = async (req, res) => {
       email,
       contactNumber,
       donationDescription,
+      status: "pending",
     };
 
     await Donation.findByIdAndUpdate(donationID, updateDonation)
