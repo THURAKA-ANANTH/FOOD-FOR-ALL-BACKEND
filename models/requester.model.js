@@ -30,5 +30,5 @@ const RequesterSchema = new Schema({
     }
 })
 
-const Requester = mongoose.model("requester", RequesterSchema)
+const Requester = mongoose.model("individual", RequesterSchema)
 module.exports = Requester;

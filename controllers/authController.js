@@ -2,6 +2,7 @@ const User = require('../models/user');
 const Organization=require('../models/organization.model')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const Requester = require('../models/requester.model');
 
 const handleLogin = async (req, res) => {
     console.log("PASSEDDD")
@@ -10,12 +11,13 @@ const handleLogin = async (req, res) => {
     let foundUser;
     if ((!username||!email)&&!password) return res.status(400).json({ 'message': 'Username and password are required.' });
 
-    foundUser = await User.findOne({ username: username }).exec();
+    foundUser = await Requester.findOne({ email: username }).exec();
     if (!foundUser){
         foundUser = await Organization.findOne({email: username }).exec();
     } else if (!foundUser) {
         return res.sendStatus(401); //Unauthorized 
     }
+    console.log(foundUser)
     //console.log(foundUser)
     
     
@@ -42,8 +44,9 @@ const handleLogin = async (req, res) => {
     const match = await bcrypt.compare(password, foundUser.password);
     
     // const match = (password==foundUser.password);
+    console.log(foundUser)
     const match1=await bcrypt.compare(password,foundUser.password);
-    //console.log(foundUser)
+    
     console.log(password)
     console.log(foundUser.password)
     console.log(match);
