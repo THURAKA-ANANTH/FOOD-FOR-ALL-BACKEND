@@ -3,8 +3,9 @@ const { imageUpload } = require("../../common/imageUpload");
 
 const createRequest = async (req, res) => {
     const formData = req.body;
+    console.log(formData)
 
-    formData.document = await imageUpload(formData.document);
+    formData.requestImage = await imageUpload(formData.requestImage);
 
     const newRequest = new Request(formData); 
             newRequest.save() 

@@ -2,7 +2,9 @@ const Donation = require("../../models/donation.model");
 
 const getAllDonations = (req, res) => {
   try {
-    Donation.find()
+    Donation.find({
+      status: "active",
+    })
       .then((donations) => {
         res.json(donations);
       })
