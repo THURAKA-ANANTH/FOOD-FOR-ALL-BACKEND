@@ -1,4 +1,5 @@
 const FundDonation = require("../../../models/fundDonation.model");
+const Requester = require("../../../models/requester.model");
 const User = require("../../../models/user");
 
 // Get latest n contributions
@@ -10,15 +11,18 @@ const getNContributions = async (req, res) => {
         await FundDonation.find({
             organizationID: organizationID
         }).sort({ _id: -1 }).limit(limit)
-            .then(async(contributions) => {
+            .then(async (contributions) => {
                 for (const contribution of contributions) {
-                    await User.findById(contribution.userID)
+                    await Requester.findById(contribution.userID)
                         .then(async (user) => {
                             // add user name to contribution
-                            contribution.userID = user.name
-                            result.push(contribution)
+                            if (user.firstName && user.lastName) {
+                                contribution.userID = user.firstName + ' ' + user.lastName
+                                result.push(contribution)
+                            }
                             // console.log(result);
                         }).catch(err => {
+                            // console.log("Error 01 " + err.message);
                             res.status(500).send({
                                 msg: "Error fetching data",
                                 error: err,
@@ -29,6 +33,7 @@ const getNContributions = async (req, res) => {
                     contributions: result
                 })
             }).catch((err) => {
+                // console.log("Error 02 " + err.message);
                 res.status(500).send({
                     msg: "Error fetching data",
                     error: err,
