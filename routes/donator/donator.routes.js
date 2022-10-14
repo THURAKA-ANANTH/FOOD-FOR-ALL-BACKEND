@@ -9,6 +9,7 @@ const {
   getOngoingDonations,
   getPendingDonations,
   getRejectedDonations,
+  getUserDonations,
 } = require("../../controllers/donator/getDonations");
 const getOneDonationDetails = require("../../controllers/donator/getOneDonation");
 const {
@@ -48,6 +49,7 @@ router.put("/acceptRequest/:id", acceptDonationRequest);
 router.put("/rejectRequest/:id", rejectDonationRequest);
 router.put("/markAsCompleted/:id", markDonationAsCompleted);
 router.get("/getApprovedRequests/:id", getApprovedRequests);
+router.get("/getUserDonations/:id", getUserDonations);
 
 router.post("/test", testBase64);
 

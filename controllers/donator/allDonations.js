@@ -14,6 +14,17 @@ const getAllDonations = (req, res) => {
           error: err,
         });
       });
+    // Donation.aggregate([
+    //   {
+    //     $sample: { size: 3 },
+    //   },
+    // ])
+    //   .then((donations) => {
+    //     console.log(donations);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
   } catch (error) {
     console.log(error);
   }
