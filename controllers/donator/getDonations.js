@@ -48,9 +48,22 @@ const getRejectedDonations = async (req, res) => {
     });
 };
 
+const getUserDonations = async (req, res) => {
+  await Donation.find({ userID: req.params.id })
+    .then((donations) => {
+      res.json(donations);
+    })
+    .catch((err) => {
+      res.json({
+        errror: err,
+      });
+    });
+};
+
 module.exports = {
   getCompletedDonations,
   getOngoingDonations,
   getPendingDonations,
   getRejectedDonations,
+  getUserDonations,
 };
