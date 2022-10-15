@@ -1,7 +1,7 @@
 const Donation = require("../../models/donationRequest.model");
 
-const getAllPendingDonations = async (req, res) => {
-    await Donation.find({ requestStatus: "pending"})
+const getAllAcceptedDonations = async (req, res) => {
+    await Donation.find({ requestStatus: "accepted"})
       .then((donations) => {
         res.json(donations);
       })
@@ -13,5 +13,5 @@ const getAllPendingDonations = async (req, res) => {
   };
 
   module.exports={
-    getAllPendingDonations
+    getAllAcceptedDonations
   };

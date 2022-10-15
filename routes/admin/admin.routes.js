@@ -10,7 +10,9 @@ const {getRequestedFunds}=require("../../controllers/admin/fundlist");
 const{getApprovedFunds}=require("../../controllers/admin/fundlist");
 const{editOrganization}=require("../../controllers/admin/updateOrg");
 const{updateDonationStatus}=require("../../controllers/admin/updateDonationStatus");
-const{getAllPendingDonations}=require("../../controllers/admin/pendingDonationList")
+const{getAllPendingDonations}=require("../../controllers/admin/pendingDonationList");
+const { getAllUsers } = require("../../controllers/admin/getAllUsers");
+const { getAllAcceptedDonations } = require("../../controllers/admin/acceptedDonationList");
 
 const router = express.Router();
 
@@ -23,6 +25,9 @@ router.delete("/deletereqorg/:id",deleteReqOrganization);
 router.put("/editorg/:id",editOrganization);
 router.put("/updostauts/:id",updateDonationStatus);
 router.get("/getpdon/", getAllPendingDonations);
+router.get("/getaccepteddon/",getAllAcceptedDonations)
+router.get("/getusers",getAllUsers);
+
 
 
 module.exports = router;
