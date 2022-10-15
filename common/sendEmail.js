@@ -1,6 +1,10 @@
 const nodemailer = require("nodemailer");
 const hbs = require("nodemailer-express-handlebars");
 
+const username = "foodforallplatform@gmail.com"
+const senderEmail = "foodforallplatform@gmail.com"
+const password = "loqwplnxvfonmfyi"
+
 var transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -139,9 +143,48 @@ function sendDonationDeletedEmail(email, text) {
   });
 }
 
+
+// For organization emails
+var transporterOrganizationEmails = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: username,
+    pass: password,
+  },
+});
+
+transporterOrganizationEmails.use(
+  "compile",
+  hbs({
+    viewEngine: "express-handlebars",
+    viewPath: "./common/views/organizationEmails",
+  })
+)
+
+function sendOrganizationEmail(email, emailSubject, text) {
+  var mailOptions = {
+    from: senderEmail,
+    to: email,
+    subject: emailSubject,
+    text: `${text}`,
+    template: "index",
+    context: {
+      emailText: text,
+    },
+  };
+  transporterOrganizationEmails.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+}
+
 module.exports = {
   sendEmail,
   sendAcceptedEmail,
   sendRejectedEmail,
   sendDonationDeletedEmail,
+  sendOrganizationEmail,
 };

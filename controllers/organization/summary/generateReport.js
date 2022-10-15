@@ -1,11 +1,11 @@
 const Fund = require("../../../models/fund.model");
 const FundDonation = require("../../../models/fundDonation.model");
-const User = require("../../../models/user");
+const Requester = require("../../../models/requester.model");
 
 const generateReport = async (req, res) => {
     const { organizationID, month } = req.params;
-    console.log(month);
-    console.log(organizationID);
+    // console.log(month);
+    // console.log(organizationID);
 
     const result = []
     FundDonation.find(
@@ -32,10 +32,12 @@ const generateReport = async (req, res) => {
                     });
                 })
 
-            await User.findById(donation.userID)
+            await Requester.findById(donation.userID)
                 .then((user) => {
-                    row.push(user.name)
+                    var name = user.firstName + " " + user.lastName
+                    row.push(name)
                 }).catch((err) => {
+                    console.log(err);
                     res.status(500).send({
                         msg: "Error user data",
                         error: err,

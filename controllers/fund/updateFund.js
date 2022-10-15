@@ -1,7 +1,8 @@
 const { imageUpload } = require("../../common/imageUpload")
-const { sendEmail } = require("../../common/sendEmail")
+const { sendOrganizationEmail } = require("../../common/sendEmail")
 
-const Fund = require("../../models/fund.model")
+const Fund = require("../../models/fund.model");
+const User = require("../../models/user");
 
 const updateFund = async (req, res) => {
     try {
@@ -20,6 +21,19 @@ const updateFund = async (req, res) => {
 
         await Fund.findByIdAndUpdate(fundId, formData)
             .then(fund => {
+                try {
+                    User.findById(formData.organizationID, { email: 1 })
+                        .then(user => {
+                            // console.log(user.toObject().email);
+                            sendOrganizationEmail(
+                                user.toObject().email,
+                                "Fund Update - " + formData.title,
+                                "Your fund data has been submitted for review. You will be notified once it is approved."
+                            )
+                        })
+                } catch (error) {
+                    console.log(error);
+                }
                 res.status(201).json({
                     message: "Fund updated successfully",
                     fund: fund
