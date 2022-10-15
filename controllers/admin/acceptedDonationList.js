@@ -1,7 +1,7 @@
-const Donation = require("../../models/donationRequest.model");
+const Donation = require("../../models/donation.model");
 
 const getAllAcceptedDonations = async (req, res) => {
-    await Donation.find({ requestStatus: "accepted"})
+    await Donation.find({ status: "active"})
       .then((donations) => {
         res.json(donations);
       })
