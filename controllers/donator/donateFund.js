@@ -12,16 +12,23 @@ const donateToFund = async (req, res) => {
       organizationID
     });
 
-    newFund
-      .save()
+    newFund.save()
       .then(async () => {
         await Fund.findById(fundID)
           .then(async (fund) => {
             // var previousAmount = fund.currentAmount;
             var newAmount = parseInt(amount) + fund.currentAmount;
-            const updateFund = {
-              currentAmount: newAmount,
-            };
+            var updateFund = {}
+            if (newAmount === fund.budget) {
+              updateFund = {
+                currentAmount: newAmount,
+                status: "completed"
+              };
+            } else {
+              updateFund = {
+                currentAmount: newAmount,
+              };
+            }
             await Fund.findByIdAndUpdate(fundID, updateFund)
               .then(() => {
                 res.status(201).json({
