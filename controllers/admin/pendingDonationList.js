@@ -1,7 +1,7 @@
-const Donation = require("../../models/donationRequest.model");
+const Donation = require("../../models/donation.model");
 
 const getAllPendingDonations = async (req, res) => {
-    await Donation.find({ requestStatus: "pending"})
+    await Donation.find({ status: "pending"})
       .then((donations) => {
         res.json(donations);
       })
