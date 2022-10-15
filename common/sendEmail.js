@@ -24,6 +24,14 @@ var transporter3 = nodemailer.createTransport({
   },
 });
 
+var transporter4 = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "foodforallplatform@gmail.com",
+    pass: "loqwplnxvfonmfyi",
+  },
+});
+
 transporter.use(
   "compile",
   hbs({
@@ -43,6 +51,13 @@ transporter3.use(
   hbs({
     viewEngine: "express-handlebars",
     viewPath: "./common/views/rejected",
+  })
+);
+transporter4.use(
+  "compile",
+  hbs({
+    viewEngine: "express-handlebars",
+    viewPath: "./common/views/deleted",
   })
 );
 function sendEmail(email, text) {
@@ -104,8 +119,29 @@ function sendRejectedEmail(email, text) {
   });
 }
 
+function sendDonationDeletedEmail(email, text) {
+  var mailOptions = {
+    from: "foodforallplatform@gmail.com",
+    to: email,
+    subject: "The donation you have sent a request has been deleted",
+    text: `${text}`,
+    template: "index",
+    context: {
+      name: text,
+    },
+  };
+  transporter4.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+}
+
 module.exports = {
   sendEmail,
   sendAcceptedEmail,
   sendRejectedEmail,
+  sendDonationDeletedEmail,
 };
