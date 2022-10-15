@@ -14,7 +14,7 @@ const router = express.Router();
 router.post("/requesterSignUp", requesterSignUp);
 router.post("/createRequest", createRequest);
 router.get("/profile/:id", viewUserProfile);
-router.put("/updateProfile", updateProfile);
+router.put("/updateProfile/:id", updateProfile);
 router.get("/view/request/:id", getRequestersRequest);
 router.get("/my/requests/:id", getMyRequests);
 router.get("/allrequests", getAllRequests);
