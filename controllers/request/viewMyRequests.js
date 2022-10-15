@@ -4,7 +4,7 @@ const getMyRequests = async (req, res) => {
     try {
         const userId = req.params.id;
 
-        await Request.find({_id: userId })
+        await Request.find({ userId: userId })
         .then((requests) => {
             res.status(200).send({
                 requests
