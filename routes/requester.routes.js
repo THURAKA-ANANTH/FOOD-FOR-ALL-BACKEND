@@ -7,6 +7,7 @@ const { updateProfile, updatePassword } = require("../controllers/requester/Upda
 const { getAllRequests } = require("../controllers/request/allRequests");
 const { getRequestersRequest } = require("../controllers/request/viewRequest");
 const { getMyRequests } = require("../controllers/request/viewMyRequests");
+const { deleteRequest } = require("../controllers/request/deleteRequest");
 
 
 const router = express.Router();
@@ -19,5 +20,6 @@ router.put("/updatePassword/:id", updatePassword);
 router.get("/view/request/:id", getRequestersRequest);
 router.get("/my/requests/:id", getMyRequests);
 router.get("/allrequests", getAllRequests);
+router.delete("/delete/:id" ,deleteRequest);
 
 module.exports = router;
