@@ -2,10 +2,12 @@ const UserDetails = require("../../models/requester.model");
 
 const updateProfile = async (req, res) => {
     try {
-        const userID = req.params.id;
+        const userId = req.params.id;
+        console.log(userId)
     
         const { firstName, lastName, email, contactNumber } =
           req.body;
+          
     
         const updateDetails = {
             firstName,
@@ -13,11 +15,12 @@ const updateProfile = async (req, res) => {
             email,
             contactNumber,
         };
-    
-        await UserDetails.findByIdAndUpdate(userID, updateDetails)
+    console.log(updateDetails)
+        await UserDetails.findByIdAndUpdate(userId, updateDetails)
           .then((details) => {
             console.log(details);
             res.status(200).send({ status: "profile updated" });
+            
           })
           .catch(() => {
             res.status(500).send({ status: "error" });
