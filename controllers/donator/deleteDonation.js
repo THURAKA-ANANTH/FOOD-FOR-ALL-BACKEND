@@ -20,6 +20,7 @@ const deleteDonation = async (req, res) => {
 
     await Donation.findByIdAndDelete(donationID)
       .then(() => {
+        console.log("sds");
         res.status(200).send({
           msg: "donation succesfully deleted",
         });
