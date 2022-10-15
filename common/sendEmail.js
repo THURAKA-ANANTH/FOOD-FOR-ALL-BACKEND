@@ -16,6 +16,14 @@ var transporter2 = nodemailer.createTransport({
   },
 });
 
+var transporter3 = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "foodforallplatform@gmail.com",
+    pass: "loqwplnxvfonmfyi",
+  },
+});
+
 transporter.use(
   "compile",
   hbs({
@@ -28,6 +36,13 @@ transporter2.use(
   hbs({
     viewEngine: "express-handlebars",
     viewPath: "./common/views/accepted",
+  })
+);
+transporter3.use(
+  "compile",
+  hbs({
+    viewEngine: "express-handlebars",
+    viewPath: "./common/views/rejected",
   })
 );
 function sendEmail(email, text) {
@@ -53,7 +68,7 @@ function sendAcceptedEmail(email, text) {
   var mailOptions = {
     from: "foodforallplatform@gmail.com",
     to: email,
-    subject: "Food for all ",
+    subject: "Your request has been accepted",
     text: `${text}`,
     template: "index",
     context: {
@@ -69,7 +84,28 @@ function sendAcceptedEmail(email, text) {
   });
 }
 
+function sendRejectedEmail(email, text) {
+  var mailOptions = {
+    from: "foodforallplatform@gmail.com",
+    to: email,
+    subject: "Your request has been rejected",
+    text: `${text}`,
+    template: "index",
+    context: {
+      name: text,
+    },
+  };
+  transporter3.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+}
+
 module.exports = {
   sendEmail,
   sendAcceptedEmail,
+  sendRejectedEmail,
 };
