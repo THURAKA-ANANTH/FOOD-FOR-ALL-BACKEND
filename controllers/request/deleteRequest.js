@@ -4,7 +4,7 @@ const deleteRequest = async (req, res) => {
     try {
         const requestID = req.params.id;
 
-        await Requests.findById(requestID)
+        await Requests.findByIdAndDelete(requestID)
         .then(() => {
             res.status(200).send({
                 msg: "Request deleted succesfully.",
