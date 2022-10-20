@@ -23,7 +23,7 @@ React  - Frontend Framework\
 NodeJS - JS Runtime for the backend
 
 ## How to get started
-### Prerequistes
+### Prerequisites
  1.NodeJs
  
  ### Running the project
